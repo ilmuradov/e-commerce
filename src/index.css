@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
+:root {
+    --color-gray: #808080;
+    --color-lightgray: lightgray;
+    --color-lightgreen: lightgreen;
+    --color-button-text: rgb(49, 49, 49);
+    --color-darkgreen: darkgreen;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: auto;
+    /* padding: 0 10%; */
+}
+
+.app-wrapper {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+}

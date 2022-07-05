@@ -1,0 +1,81 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px 5px;
+    border: 2px solid transparent;
+    border-radius: 3px;
+}
+
+.container:hover {
+    border: 2px solid var(--color-gray);
+}
+
+.info {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info div {
+    display: flex;
+    align-items: center;
+}
+
+.info h3 {
+    color: var(--color-gray);
+}
+
+img {
+    display: flex;
+    width: 100px;
+    margin-right: 40px;
+}
+
+span {
+    font-weight: 600;
+    color: var(--color-lightgray);
+    font-size: 2rem;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 30%;
+}
+
+.btn button {
+    width: 40%;
+    height: 40px;
+    font-weight: 600;
+    font-size: .9rem;
+    border-radius: 3px;
+    transition: .2s;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.delete {
+    background-color: #fff;
+    border: 2px solid red;
+    color: red;
+}
+
+.delete:hover {
+    background-color: red;
+    color: #fff;
+}
+
+.buy {
+    background-color: #fff;
+    color: var(--color-darkgreen);
+    border: 2px solid var(--color-darkgreen);
+}
+
+.buy:hover {
+    background-color: var(--color-darkgreen);
+    color: #fff;
+}

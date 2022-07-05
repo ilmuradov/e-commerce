@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+.container h1 {
+    color: var(--color-gray);
+    text-transform: uppercase;
+}
+
+.products {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 0;
+}
