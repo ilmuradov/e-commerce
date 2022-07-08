@@ -29,6 +29,11 @@ const productsApi = {
     async getCarts() {
         const res = await instance.get("carts")
         return res.data
+    },
+    async getAllUsers() {
+        const res = await instance.get("users")
+        debugger
+        return res.data
     }
 }
 

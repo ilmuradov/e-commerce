@@ -17,7 +17,7 @@ const ProductItem = (props) => {
     }
 
     return (
-        <div className={classes.container} key={id}>
+        <div className={classes.container}>
             <h4> {title} </h4>
             <img src={image} alt={title} />
             <div className={classes.info}>

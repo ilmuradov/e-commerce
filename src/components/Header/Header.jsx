@@ -4,7 +4,7 @@ import { compose } from "redux"
 import classes from "./Header.module.css"
 import { getCategoryProducts } from "../../reducers/products-reducer"
 
-const Header = ({ categories, getCategoryProducts }) => {
+const Header = ({ categories, getCategoryProducts, isAuth }) => {
     const navigate = useNavigate()
 
     const sendApiCall = async (category) => {
@@ -31,13 +31,21 @@ const Header = ({ categories, getCategoryProducts }) => {
             <div className={classes.cart}> 
                 <p onClick={() => navigate("/cart")} > Cart </p>
             </div>
+            {!isAuth ? 
+                <div className={classes.cart}>
+                    <p onClick={() => { navigate("/register") }}> Register </p>
+                </div>
+                :
+                null
+            }
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
     fetching: state.products.fetching,
-    categories: state.products.categories
+    categories: state.products.categories,
+    isAuth: state.auth.isAuth
 })
 
 export default compose(

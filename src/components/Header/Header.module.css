@@ -4,27 +4,23 @@
     justify-content: space-around;
     padding: 20px 0;
     align-items: center;
-    border-bottom: 2px solid var(--color-gray);
+    border-bottom: 2px solid var(--color-orange);
 }
 
 .header h1 {
     cursor: pointer;
     letter-spacing: 4px;
-    color: var(--color-gray);
+    color: var(--color-orange);
     font-size: 3rem;
 }
 
 .header input {
     width: 30%;
     padding: 10px 20px;
-    border: 2px solid var(--color-gray);
+    border: 2px solid var(--color-orange);
     border-radius: 3px;
     font-size: 1rem;
-    color: var(--color-gray);
-}
-
-.header input:focus {
-    color: var(--color-gray);
+    color: var(--color-orange);
 }
 
 .dropbtn {

@@ -6,6 +6,8 @@
     --color-lightgreen: lightgreen;
     --color-button-text: rgb(49, 49, 49);
     --color-darkgreen: darkgreen;
+    --color-orange: orange;
+    --color-darkorange: darkorange;
 }
 
 * {

@@ -1,0 +1,105 @@
+.container {
+    display: flex;
+    width: 70%;
+    margin-left: 15%;
+    height: 90vh;
+    margin-top: 5vh;
+}
+
+.shop {
+    width: 30%;
+    background-color: #ffa600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shop h1 {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 3rem;
+    color: #fff;
+}
+
+.form {
+    border: 3px solid var(--color-orange);
+    width: 70%;
+    padding: 10px 20px;
+}
+
+.fields h1 {
+    color: var(--color-orange);
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.fields {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.field {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.input {
+    border: 2px solid var(--color-orange);
+    outline: none;
+    width: 350px;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-orange);
+    transition: .5s;
+}
+
+.input::placeholder {
+    color: var(--color-orange);
+    opacity: .5;
+}
+
+.input:focus {
+    border-color: var(--color-darkorange);
+}
+
+.error {
+    border-color: red;
+}
+
+.error::placeholder {
+    color: red;
+}
+
+.field span {
+    font-weight: 600;
+    font-size: 1rem;
+    color: red;
+    transition: .5s;
+}
+
+.btn {
+    width: 25%;
+    margin-top: auto;
+    padding: 15px;
+    background-color: var(--color-orange);
+    /* border: 2px solid transparent; */
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    /* transition: .1s; */
+}
+
+/* .btn:hover {
+    border: 2px solid var(--color-orange);
+    background-color: #fff;
+    color: var(--color-orange);
+} */
