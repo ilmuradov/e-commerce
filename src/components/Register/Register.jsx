@@ -1,9 +1,15 @@
 import { Form, Field } from "react-final-form"
+import { compose } from "redux"
+import { connect } from "react-redux"
 import classes from "./Register.module.css"
+import { getUserData } from "../../reducers/auth-reducer"
+import { async } from "q"
+import authApi from "../../API/auth-api"
 
-const Register = () => {
-    const onSubmit = (e) => {
-        console.log(e)
+const Register = ({ getUserData }) => {
+    const onSubmit = async (e) => {
+        const { username, password } = e
+        await getUserData({username, password})
     }
 
     const required = (value) => (value ? undefined : "This field is required!")
@@ -22,11 +28,10 @@ const Register = () => {
                     render = {({ handleSubmit }) => 
                     <form onSubmit={handleSubmit} className={classes.fields}>
                         <h1> Register </h1>
-                        <FormField placeholder="E-mail" fieldName="email" type="text" validators={required}/>
-                        <FormField placeholder="Username" fieldName="username" type="text" validators={minValue(10)}/>
-                        <FormField placeholder="Password" fieldName="password" type="password"/>
+                        <FormField placeholder="Username" fieldName="username" type="text"/>
                         <FormField placeholder="Firstname" fieldName="firstname" type="text"/>
                         <FormField placeholder="Lastname" fieldName="lastname" type="text"/>
+                        <FormField placeholder="Password" fieldName="password" type="password"/>
                         <button className={classes.btn} type="submit" > Submit </button>
                     </form>
                     }
@@ -53,4 +58,10 @@ const FormField = ({placeholder, fieldName, type, validators}) => (
     </div>
 )
 
-export default Register
+const mapStateToProps = (state) => ({
+
+})
+
+export default compose(
+    connect(mapStateToProps, {getUserData})
+)(Register)

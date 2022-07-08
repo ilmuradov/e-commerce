@@ -1,4 +1,3 @@
-import Header from "../Header/Header"
 import Products from "../Products/Products"
 
 const Home = (props) => {

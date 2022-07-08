@@ -3,13 +3,19 @@ import { useNavigate } from "react-router-dom"
 import { compose } from "redux"
 import classes from "./Header.module.css"
 import { getCategoryProducts } from "../../reducers/products-reducer"
+import { logout } from "../../reducers/auth-reducer"
 
-const Header = ({ categories, getCategoryProducts, isAuth }) => {
+const Header = ({ categories, getCategoryProducts, userData }) => {
     const navigate = useNavigate()
 
     const sendApiCall = async (category) => {
         navigate(`products/categories/${category}`)
         await getCategoryProducts(category)
+    }
+
+    const logoutOnClick = () => {
+        logout()
+        navigate("/")
     }
 
     if (!categories) {
@@ -31,12 +37,14 @@ const Header = ({ categories, getCategoryProducts, isAuth }) => {
             <div className={classes.cart}> 
                 <p onClick={() => navigate("/cart")} > Cart </p>
             </div>
-            {!isAuth ? 
+            {!userData ? 
                 <div className={classes.cart}>
-                    <p onClick={() => { navigate("/register") }}> Register </p>
+                    <p onClick={() => { navigate("/login") }}> Login </p>
                 </div>
                 :
-                null
+                <div className={classes.cart}>
+                    <p onClick={() => logoutOnClick()}> Log out </p>
+                </div>
             }
         </div>
     )
@@ -45,9 +53,9 @@ const Header = ({ categories, getCategoryProducts, isAuth }) => {
 const mapStateToProps = (state) => ({
     fetching: state.products.fetching,
     categories: state.products.categories,
-    isAuth: state.auth.isAuth
+    userData: state.auth.userData
 })
 
 export default compose(
-    connect(mapStateToProps, {getCategoryProducts})
+    connect(mapStateToProps, {getCategoryProducts, logout})
 )(Header)

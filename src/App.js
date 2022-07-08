@@ -10,9 +10,8 @@ import Product from "./components/Products/Product"
 import Cart from "./components/Cart/Cart"
 import { getProducts, getSingleProduct, getCategoryProducts, 
     getCategories, getCarts } from "./reducers/products-reducer"
-// import Login from "./components/Login/Login"
-import Register from "./components/Register/Register"
 import Loading from "./components/Common/Loading"
+import Login from "./components/Login/Login"
 
 const App = (props) => {
     useEffect(() => {
@@ -20,10 +19,7 @@ const App = (props) => {
         props.getProducts()
     }, [])
 
-    if (!props.isAuth) {
-        return ( <Register /> )
-    }
-    else if(!props.products) {
+    if(!props.products) {
         return ( <Loading /> )
     }
     return (
@@ -39,8 +35,8 @@ const App = (props) => {
                         element={<CategoryProducts getProducts={props.getCategoryProducts} products={props.categoryProducts } />} />
                     <Route path="/cart"
                         element={<Cart />} />
-                    {/* <Route path="/login"
-                        element={<Login />} /> */}
+                    <Route path="/login"
+                        element={<Login />} />
                     <Route path="*" element={<Home />} />
                 </Routes>
             </div>
@@ -55,7 +51,7 @@ const mapStateToProps = (state) => ({
     categoryProducts: state.products.categoryProducts,
     categories: state.products.categories,
     carts: state.products.carts,
-    isAuth: state.auth.isAuth
+    userData: state.auth.userData
 })
 
 export default compose(

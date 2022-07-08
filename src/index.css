@@ -2,6 +2,8 @@
 
 :root {
     --color-gray: #808080;
+    --color-darkgray: darkgrey;
+    --color-dark: rgb(56, 56, 56);
     --color-lightgray: lightgray;
     --color-lightgreen: lightgreen;
     --color-button-text: rgb(49, 49, 49);
