@@ -9,7 +9,8 @@ import CategoryProducts from "./components/Products-by-category/CategoryProducts
 import Product from "./components/Products/Product"
 import Cart from "./components/Cart/Cart"
 import { getProducts, getSingleProduct, getCategoryProducts, 
-    getCategories, getCarts } from "./reducers/products-reducer"
+    getCategories } from "./reducers/products-reducer"
+import { initializeUser } from "./reducers/auth-reducer"
 import Loading from "./components/Common/Loading"
 import Login from "./components/Login/Login"
 
@@ -17,6 +18,7 @@ const App = (props) => {
     useEffect(() => {
         props.getCategories()
         props.getProducts()
+        props.initializeUser()
     }, [])
 
     if(!props.products) {
@@ -31,7 +33,7 @@ const App = (props) => {
                     <Route path="/products" element={<Home />} />
                     <Route path="/products/:productId" 
                         element={<Product getProduct={props.getSingleProduct} product={props.product} />} />
-                    <Route path="/products/categories/:categoryName"
+                    <Route path="/products/categories/:categoryId"
                         element={<CategoryProducts getProducts={props.getCategoryProducts} products={props.categoryProducts } />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/login" element={<Login />} />
@@ -55,7 +57,7 @@ const mapStateToProps = (state) => ({
 export default compose(
     connect(mapStateToProps, 
         { getProducts, getSingleProduct, getCategoryProducts, 
-            getCategories, getCarts
+            getCategories, initializeUser
         }
     )
 )(App)

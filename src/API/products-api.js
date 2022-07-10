@@ -16,8 +16,8 @@ const productsApi = {
         return res.data
     },
 
-    async getCategoryProducts(categoryName) {
-        const res = await instance.get(`products/category/${categoryName}`)
+    async getCategoryProducts(categoryId) {
+        const res = await instance.get(`products/categories/${categoryId}`)
         return res.data
     },
 

@@ -6,6 +6,11 @@ const instance = axios.create({
 })
 
 const authApi = {
+    async authMe() {
+        const res = await instance.get("/@me").catch((error) => error)
+        return res
+    },
+
     async register({ username, lastname, password }) {
         const res = await instance.post("/register", {username, lastname, password})
         return res.data

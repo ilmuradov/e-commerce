@@ -1,17 +1,22 @@
 import { useState } from "react"
 import { useEffect } from "react"
 import { connect } from "react-redux"
-import { useLocation, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { compose } from "redux"
 import { mapper } from "../../utils/component-helper"
 import Loading from "../Common/Loading"
 import ProductItem from "../Products/ProductItem"
 import classes from "./CategoryProducts.module.css"
+import { getCategoryProducts } from "../../reducers/products-reducer"
 
-const CategoryProducts = ({ products, fetching }) => {
-    const { categoryName } = useParams()
+const CategoryProducts = ({ products, getCategoryProducts }) => {
+    const { categoryId } = useParams()
 
-    if (fetching) {
+    useEffect(() => async () => {
+        getCategoryProducts(categoryId)
+    }, [])
+
+    if (!products) {
         return <Loading />
     }
 
@@ -27,9 +32,10 @@ const CategoryProducts = ({ products, fetching }) => {
 
 const mapStateToProps = (state) => ({
     fetching: state.products.fetching,
-    products: state.products.categoryProducts
+    products: state.products.categoryProducts,
+    categories: state.products.categories
 })
 
 export default compose(
-    connect(mapStateToProps, {})
+    connect(mapStateToProps, {getCategoryProducts})
 )(CategoryProducts)

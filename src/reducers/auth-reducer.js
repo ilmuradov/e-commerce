@@ -38,6 +38,13 @@ const toggleIsRegistered = (isRegistered) => ({ type: TOGGLE_IS_REGISTERED, isRe
 const setStatus = (status) => ({ type: SET_STATUS, status })
 const eraseUserData = () => ({ type: LOGOUT })
 
+export const initializeUser = () => async (dispatch) => {
+    const res = await authApi.authMe()
+    if(res.response && res.response.status === 401) {
+        console.log("Unauthorized")
+    } else setUserData(res.data)
+}
+
 export const getUserData = (data) => async (dispatch) => {
     const res = await authApi.register(data)
     if(res.id) {

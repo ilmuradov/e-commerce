@@ -16,11 +16,6 @@ const Header = ({ categories, getCategoryProducts, userData, login, status }) =>
         login({ username, password })
     }
 
-    const sendApiCall = async (category) => {
-        navigate(`products/categories/${category}`)
-        await getCategoryProducts(category)
-    }
-
     const logoutOnClick = () => {
         logout()
         navigate("/")

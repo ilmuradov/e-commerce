@@ -80,9 +80,9 @@ export const getSingleProduct = (productId) => async (dispatch) => {
     dispatch(toggleFetching(false))
 }
 
-export const getCategoryProducts = (categoryName) => async (dispatch) => {
+export const getCategoryProducts = (categoryId) => async (dispatch) => {
     dispatch(toggleFetching(true))
-    const res = await productsApi.getCategoryProducts(categoryName)
+    const res = await productsApi.getCategoryProducts(categoryId)
     dispatch(setCategoryProducts(res))
     dispatch(toggleFetching(false))
 }
