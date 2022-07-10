@@ -23,7 +23,10 @@ const Header = ({ categories, getCategoryProducts, userData }) => {
     }
     return (
         <div className={classes.header}>
-            <h1 onClick={() => navigate("/")}> SHOP </h1>
+            <div className={classes.favicon}>
+                <h1 onClick={() => navigate("/")}> SHOP </h1>
+                <img src="favicon.png" alt="SHOP" />
+            </div>
             <input type="text" placeholder="Search" />
             <div className={classes.dropdown}>
                 <p className={classes.dropbtn}> Categories</p> 

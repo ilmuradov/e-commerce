@@ -4,20 +4,31 @@
     justify-content: space-around;
     padding: 20px 0;
     align-items: center;
-    border-bottom: 2px solid var(--color-orange);
+    border-bottom: 2px solid var(--color-gray);
 }
 
-.header h1 {
+.favicon {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.favicon h1 {
     cursor: pointer;
     letter-spacing: 4px;
     color: var(--color-orange);
     font-size: 3rem;
 }
 
+.favicon img {
+    width: 50px;
+}
+
 .header input {
     width: 30%;
     padding: 10px 20px;
-    border: 2px solid var(--color-orange);
+    border: 2px solid var(--color-gray);
     border-radius: 3px;
     font-size: 1rem;
     color: var(--color-orange);
@@ -56,7 +67,7 @@
 }
 
 .dropdown_menu p:hover, .cart p:hover {
-    color: var(--color-gray)
+    color: var(--color-orange)
 }
   
 .dropdown:hover .dropdown_menu {
@@ -64,7 +75,7 @@
 }
   
 .dropdown:hover .dropbtn {
-    color: var(--color-gray);
+    color: var(--color-orange);
 }
 
 .cart p {

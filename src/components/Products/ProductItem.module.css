@@ -7,11 +7,21 @@
     /* box-shadow: var(--box-shadow); */
     border-radius: 3px;
     border: 1px solid lightgray;
+    transition: .3s;
+}
+
+.container:hover {
+    border-color: var(--color-orange);
+}
+
+.container:hover h4 {
+    color: var(--color-orange);
 }
 
 .container h4 {
     margin-bottom: auto;
     font-weight: 600 bold;
+    transition: .3s;
 }
 
 .container img {
@@ -41,7 +51,8 @@
 
 .container button:hover {
     background-color: #fff;
-    color: var(--color-darkgreen);
+    border-color: var(--color-orange);
+    color: var(--color-orange);
 }
 
 .info {
@@ -63,6 +74,10 @@
 
 .details {
     cursor: pointer;
-    color: orange;
+    color: var(--color-gray);
     font-weight: 600;
+}
+
+.details:hover {
+    color: var(--color-orange);
 }
