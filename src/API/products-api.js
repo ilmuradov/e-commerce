@@ -1,10 +1,8 @@
 import axios from "axios";
 
-const API_KEY = "8bf25ae8e0beca0875ec91d1f46621b0"
-
 const instance = axios.create({
-    // baseURL: "http://192.168.1.130:8080"
-    baseURL: "https://fakestoreapi.com/"
+    baseURL: "http://192.168.1.130:8080"
+    // baseURL: "https://fakestoreapi.com/"
 })
 
 const productsApi = {

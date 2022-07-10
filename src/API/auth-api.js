@@ -6,12 +6,14 @@ const instance = axios.create({
 })
 
 const authApi = {
-    async register({ username, password }) {
-        const res = await instance.post("/register", {username, password})
+    async register({ username, lastname, password }) {
+        const res = await instance.post("/register", {username, lastname, password})
         return res.data
     },
-    async login(data) {
-        const res = await instance.post("/login", {data})
+    async login({ username, password }) {
+        const res = await instance.post("/login", {username, password})
+        .catch((error) => error)
+        return res
     }
 }
 

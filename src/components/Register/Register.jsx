@@ -1,15 +1,14 @@
-import { Form, Field } from "react-final-form"
+import { Form } from "react-final-form"
 import { compose } from "redux"
 import { connect } from "react-redux"
 import classes from "./Register.module.css"
 import { getUserData } from "../../reducers/auth-reducer"
-import { async } from "q"
-import authApi from "../../API/auth-api"
+import FormField from "../../utils/component-helper"
 
 const Register = ({ getUserData }) => {
     const onSubmit = async (e) => {
-        const { username, password } = e
-        await getUserData({username, password})
+        const { username, lastname, password } = e
+        await getUserData({username, lastname, password})
     }
 
     const required = (value) => (value ? undefined : "This field is required!")
@@ -28,10 +27,9 @@ const Register = ({ getUserData }) => {
                     render = {({ handleSubmit }) => 
                     <form onSubmit={handleSubmit} className={classes.fields}>
                         <h1> Register </h1>
-                        <FormField placeholder="Username" fieldName="username" type="text"/>
-                        <FormField placeholder="Firstname" fieldName="firstname" type="text"/>
-                        <FormField placeholder="Lastname" fieldName="lastname" type="text"/>
-                        <FormField placeholder="Password" fieldName="password" type="password"/>
+                        <FormField placeholder="Username" fieldName="username" type="text" classes={classes}/>
+                        <FormField placeholder="Lastname" fieldName="lastname" type="text" classes={classes}/>
+                        <FormField placeholder="Password" fieldName="password" type="password" classes={classes}/>
                         <button className={classes.btn} type="submit" > Submit </button>
                     </form>
                     }
@@ -42,21 +40,6 @@ const Register = ({ getUserData }) => {
 }
 
 const Shop = () => ( <div className={classes.shop}> <h1> shop </h1> </div> )
-const FormField = ({placeholder, fieldName, type, validators}) => (
-    <div className={classes.field}>
-        <Field name={fieldName} validate={validators}>
-            {({ input, meta }) => (
-                <div>
-                    <input className={meta.touched && meta.error ? classes.input + " " + classes.error : classes.input}
-                        type={type} {...input} 
-                        placeholder={placeholder}
-                    />
-                    { meta.touched && meta.error ? <span> {meta.error} </span> : null}
-                </div>
-            )}
-        </Field>
-    </div>
-)
 
 const mapStateToProps = (state) => ({
 

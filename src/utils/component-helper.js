@@ -1,10 +1,10 @@
-import { Field, Form } from "react-final-form"
+import { Field } from "react-final-form"
 
 export const mapper = (object, Component) => { 
     return object.map(m => <Component {...m} key={m.id} />) 
 }
 
-const FormField = ({placeholder, fieldName, type, validators, classes}) => (
+ const FormField = ({placeholder, fieldName, type, validators, classes}) => (
     <div className={classes.field}>
         <Field name={fieldName} validate={validators}>
             {({ input, meta }) => (

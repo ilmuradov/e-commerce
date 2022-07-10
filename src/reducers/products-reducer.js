@@ -34,7 +34,7 @@ const productsReaducer = ( state = initialState, action ) => {
         }
         case SET_CATEGORIES : return {
             ...state,
-            categories: {...action.categories}
+            categories: [...action.categories]
         }
         case SET_CARTS: return {
             ...state,

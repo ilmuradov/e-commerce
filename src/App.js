@@ -33,10 +33,8 @@ const App = (props) => {
                         element={<Product getProduct={props.getSingleProduct} product={props.product} />} />
                     <Route path="/products/categories/:categoryName"
                         element={<CategoryProducts getProducts={props.getCategoryProducts} products={props.categoryProducts } />} />
-                    <Route path="/cart"
-                        element={<Cart />} />
-                    <Route path="/login"
-                        element={<Login />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="*" element={<Home />} />
                 </Routes>
             </div>

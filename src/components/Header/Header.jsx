@@ -3,10 +3,18 @@ import { useNavigate } from "react-router-dom"
 import { compose } from "redux"
 import classes from "./Header.module.css"
 import { getCategoryProducts } from "../../reducers/products-reducer"
-import { logout } from "../../reducers/auth-reducer"
+import { logout, login } from "../../reducers/auth-reducer"
+import FormField, { mapper } from "../../utils/component-helper"
+import { Form } from "react-final-form"
+import Categories from "./Categories"
 
-const Header = ({ categories, getCategoryProducts, userData }) => {
+const Header = ({ categories, getCategoryProducts, userData, login, status }) => {
     const navigate = useNavigate()
+
+    const onSubmit = async (e) => {
+        const { username, password } = e
+        login({ username, password })
+    }
 
     const sendApiCall = async (category) => {
         navigate(`products/categories/${category}`)
@@ -31,22 +39,39 @@ const Header = ({ categories, getCategoryProducts, userData }) => {
             <div className={classes.dropdown}>
                 <p className={classes.dropbtn}> Categories</p> 
                 <div className={classes.dropdown_menu}>
-                    <p onClick={() => sendApiCall(categories[0])}> {categories[0]} </p>
-                    <p onClick={() => sendApiCall(categories[1])}> {categories[1]} </p>
-                    <p onClick={() => sendApiCall(categories[2])}> {categories[2]} </p>
-                    <p onClick={() => sendApiCall(categories[3])}> {categories[3]} </p>
+                    {mapper(categories, Categories)}
                 </div>
             </div>
-            <div className={classes.cart}> 
+            {userData ? <div className={classes.cart}> 
                 <p onClick={() => navigate("/cart")} > Cart </p>
-            </div>
+            </div> : null}
             {!userData ? 
-                <div className={classes.cart}>
-                    <p onClick={() => { navigate("/login") }}> Login </p>
+                <div className={classes.dropdown}>
+                    <p className={classes.dropbtn}> Login </p>
+                    <div className={classes.dropdown_menu}>
+                        <Form onSubmit={onSubmit} render = {({ handleSubmit }) => 
+                            <form onSubmit={handleSubmit} className={classes.fields}>
+                                <h3> Login </h3>
+                                <FormField placeholder="Username" fieldName="username" type="text" classes={classes}/>
+                                <FormField placeholder="Password" fieldName="password" type="password" classes={classes}/>
+                                {status && status === 401 ? <span className={classes.error}> Username or password incorrect </span> : null}
+                                <button className={classes.btn} type="submit" > Submit </button>
+                                <a onClick={() => navigate("/register")} className={classes.register_btn}> Do not have an account? </a>
+                            </form>
+                            }
+                        />
+                    </div>
                 </div>
                 :
-                <div className={classes.cart}>
-                    <p onClick={() => logoutOnClick()}> Log out </p>
+                <div className={classes.dropdown}>
+                    <p className={classes.dropbtn}> My account </p>
+                    <div className={classes.dropdown_menu}>
+                        <div className={classes.accountInfo}>
+                            {userData.img ? <img src={userData.img} alt={userData.username} /> : <div className={classes.noPhoto}></div>}
+                            <h3> {userData.username} </h3>
+                        </div>
+                        <p onClick={() => logoutOnClick()}> logout </p>
+                    </div>
                 </div>
             }
         </div>
@@ -56,9 +81,10 @@ const Header = ({ categories, getCategoryProducts, userData }) => {
 const mapStateToProps = (state) => ({
     fetching: state.products.fetching,
     categories: state.products.categories,
-    userData: state.auth.userData
+    userData: state.auth.userData,
+    status: state.auth.status
 })
 
 export default compose(
-    connect(mapStateToProps, {getCategoryProducts, logout})
+    connect(mapStateToProps, {getCategoryProducts, logout, login})
 )(Header)
