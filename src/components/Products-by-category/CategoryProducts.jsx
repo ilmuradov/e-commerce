@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { useParams } from "react-router-dom"
 import { compose } from "redux"
@@ -8,12 +7,17 @@ import Loading from "../Common/Loading"
 import ProductItem from "../Products/ProductItem"
 import classes from "./CategoryProducts.module.css"
 import { getCategoryProducts } from "../../reducers/products-reducer"
+import productsApi from "../../API/products-api"
 
-const CategoryProducts = ({ products, getCategoryProducts }) => {
+const CategoryProducts = ({ getCategoryProducts }) => {
     const { categoryId } = useParams()
+    debugger
+
+    const [products, setProducts] = useState(null)
 
     useEffect(() => async () => {
-        getCategoryProducts(categoryId)
+        const res = await productsApi.getCategoryProducts(categoryId)
+        setProducts(res)
     }, [])
 
     if (!products) {
@@ -22,7 +26,7 @@ const CategoryProducts = ({ products, getCategoryProducts }) => {
 
     return (
         <div className={classes.container}>
-            <h1> {categoryName} </h1>
+            <h1> m </h1>
             <div className={classes.products}>
                 {mapper(products, ProductItem)}
             </div>

@@ -16,7 +16,7 @@ const Product = ({ product, fetching, getCategoryProducts, getProductsInCart }) 
     if (fetching) {
         return <Loading />
     } else {
-        const { id, title, image, price, category, description, rating } = product
+        const { id, title, image, price, category, description } = product
         
         return (
             <div className={classes.container}>
@@ -32,9 +32,6 @@ const Product = ({ product, fetching, getCategoryProducts, getProductsInCart }) 
                         <p className={classes.description}> {description} </p>
                         <div className={classes.price_rate}>
                             <p className={classes.price}> Price: <span> {price}$ </span> </p>
-                            <p className={classes.rate}> 
-                                Rating: <span> {rating.rate}</span> of 10 
-                            </p>
                         </div>
                         <div className={classes.btn}> 
                             <button onClick={getProductsInCart({ id, title, image, price })}> Add to cart </button> 

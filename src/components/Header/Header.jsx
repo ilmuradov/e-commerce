@@ -7,6 +7,7 @@ import { logout, login } from "../../reducers/auth-reducer"
 import FormField, { mapper } from "../../utils/component-helper"
 import { Form } from "react-final-form"
 import Categories from "./Categories"
+import icon from "./favicon.png"
 
 const Header = ({ categories, getCategoryProducts, userData, login, status }) => {
     const navigate = useNavigate()
@@ -28,12 +29,12 @@ const Header = ({ categories, getCategoryProducts, userData, login, status }) =>
         <div className={classes.header}>
             <div className={classes.favicon}>
                 <h1 onClick={() => navigate("/")}> SHOP </h1>
-                <img src="favicon.png" alt="SHOP" />
+                <img src={icon} alt="SHOP" />
             </div>
             <input type="text" placeholder="Search" />
-            <div className={classes.dropdown}>
+            <div className={classes.dropdown + " " + classes.dropdown_6}>
                 <p className={classes.dropbtn}> Categories</p> 
-                <div className={classes.dropdown_menu}>
+                <div className={classes.dropdown_menu + " " + classes.dropdown_menu_animated + " " + classes.dropdown_menu_6}>
                     {mapper(categories, Categories)}
                 </div>
             </div>
@@ -41,9 +42,9 @@ const Header = ({ categories, getCategoryProducts, userData, login, status }) =>
                 <p onClick={() => navigate("/cart")} > Cart </p>
             </div> : null}
             {!userData ? 
-                <div className={classes.dropdown}>
+                <div className={classes.dropdown + " " + classes.dropdown_6}>
                     <p className={classes.dropbtn}> Login </p>
-                    <div className={classes.dropdown_menu}>
+                    <div className={classes.dropdown_menu + " " + classes.dropdown_menu_animated + " " + classes.dropdown_menu_6}>
                         <Form onSubmit={onSubmit} render = {({ handleSubmit }) => 
                             <form onSubmit={handleSubmit} className={classes.fields}>
                                 <h3> Login </h3>
@@ -58,9 +59,9 @@ const Header = ({ categories, getCategoryProducts, userData, login, status }) =>
                     </div>
                 </div>
                 :
-                <div className={classes.dropdown}>
+                <div className={classes.dropdown + " " + classes.dropdown_6}>
                     <p className={classes.dropbtn}> My account </p>
-                    <div className={classes.dropdown_menu}>
+                    <div className={classes.dropdown_menu + " " + classes.dropdown_menu_animated + " " + classes.dropdown_menu_6}>
                         <div className={classes.accountInfo}>
                             {userData.img ? <img src={userData.img} alt={userData.username} /> : <div className={classes.noPhoto}></div>}
                             <h3> {userData.username} </h3>
